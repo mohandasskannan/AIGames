@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple 2D Platformer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            background-color: #87CEEB; /* Sky blue background */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+        }
+        .instructions {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="instructions">
+        <h2>Simple Platformer</h2>
+        <p>Use <strong>Arrow Keys</strong> or <strong>W, A, S, D</strong> to move and jump.</p>
+    </div>
+
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Game state and physics constants
+        const gravity = 0.6;
+        const friction = 0.8;
+        
+        // The Player object
+        const player = {
+            x: 50,
+            y: 500,
+            width: 30,
+            height: 30,
+            speed: 5,
+            velX: 0,
+            velY: 0,
+            jumpPower: -12,
+            grounded: false,
+            color: '#ff4757'
+        };
+
+        // Keyboard input tracking
+        const keys = {
+            right: false,
+            left: false,
+            up: false
+        };
+
+        // Platforms array (x, y, width, height, color)
+        const platforms = [
+            // Floor
+            { x: 0, y: 550, width: 800, height: 50, color: '#2ed573' },
+            // Floating platforms
+            { x: 150, y: 450, width: 100, height: 15, color: '#ffa502' },
+            { x: 350, y: 380, width: 100, height: 15, color: '#ffa502' },
+            { x: 550, y: 300, width: 100, height: 15, color: '#ffa502' },
+            { x: 350, y: 200, width: 100, height: 15, color: '#ffa502' },
+            { x: 100, y: 150, width: 150, height: 15, color: '#ffa502' }
+        ];
+
+        // Event listeners for keyboard
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'ArrowRight' || e.code === 'KeyD') keys.right = true;
+            if (e.code === 'ArrowLeft' || e.code === 'KeyA') keys.left = true;
+            if (e.code === 'ArrowUp' || e.code === 'KeyW' || e.code === 'Space') keys.up = true;
+        });
+
+        window.addEventListener('keyup', function(e) {
+            if (e.code === 'ArrowRight' || e.code === 'KeyD') keys.right = false;
+            if (e.code === 'ArrowLeft' || e.code === 'KeyA') keys.left = false;
+            if (e.code === 'ArrowUp' || e.code === 'KeyW' || e.code === 'Space') keys.up = false;
+        });
+
+        function checkCollision(player, platform) {
+            return (
+                player.x < platform.x + platform.width &&
+                player.x + player.width > platform.x &&
+                player.y < platform.y + platform.height &&
+                player.y + player.height > platform.y
+            );
+        }
+
+        function update() {
+            // Horizontal movement
+            if (keys.up && player.grounded) {
+                player.velY = player.jumpPower;
+                player.grounded = false;
+            }
+            if (keys.right) {
+                if (player.velX < player.speed) player.velX++;
+            }
+            if (keys.left) {
+                if (player.velX > -player.speed) player.velX--;
+            }
+
+            // Apply friction and gravity
+            player.velX *= friction;
+            player.velY += gravity;
+
+            // Update X position and check collisions
+            player.x += player.velX;
+            for (let i = 0; i < platforms.length; i++) {
+                let p = platforms[i];
+                if (checkCollision(player, p)) {
+                    // Resolve horizontal collision
+                    if (player.velX > 0) { // Moving right
+                        player.x = p.x - player.width;
+                    } else if (player.velX < 0) { // Moving left
+                        player.x = p.x + p.width;
+                    }
+                    player.velX = 0;
+                }
+            }
+
+            // Update Y position and check collisions
+            player.y += player.velY;
+            player.grounded = false;
+            
+            for (let i = 0; i < platforms.length; i++) {
+                let p = platforms[i];
+                if (checkCollision(player, p)) {
+                    // Resolve vertical collision
+                    if (player.velY > 0) { // Falling down
+                        player.y = p.y - player.height;
+                        player.grounded = true;
+                    } else if (player.velY < 0) { // Jumping up (hitting head)
+                        player.y = p.y + p.height;
+                    }
+                    player.velY = 0;
+                }
+            }
+
+            // Keep player within canvas bounds
+            if (player.x < 0) {
+                player.x = 0;
+                player.velX = 0;
+            } else if (player.x + player.width > canvas.width) {
+                player.x = canvas.width - player.width;
+                player.velX = 0;
+            }
+            if (player.y > canvas.height) { // Respawn if falls out of bounds
+                player.x = 50;
+                player.y = 500;
+                player.velY = 0;
+            }
+        }
+
+        function draw() {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw platforms
+            for (let i = 0; i < platforms.length; i++) {
+                ctx.fillStyle = platforms[i].color;
+                ctx.fillRect(platforms[i].x, platforms[i].y, platforms[i].width, platforms[i].height);
+                
+                // Add a subtle border to platforms
+                ctx.strokeStyle = '#rgba(0,0,0,0.2)';
+                ctx.strokeRect(platforms[i].x, platforms[i].y, platforms[i].width, platforms[i].height);
+            }
+
+            // Draw player
+            ctx.fillStyle = player.color;
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+            
+            // Draw player eyes (just for fun)
+            ctx.fillStyle = 'white';
+            ctx.fillRect(player.x + 18, player.y + 6, 6, 6);
+            ctx.fillRect(player.x + 8, player.y + 6, 6, 6);
+            ctx.fillStyle = 'black';
+            ctx.fillRect(player.x + 20 + (player.velX*0.5), player.y + 8, 2, 2);
+            ctx.fillRect(player.x + 10 + (player.velX*0.5), player.y + 8, 2, 2);
+        }
+
+        // Main game loop
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Start the game
+        gameLoop();
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    @font-face {
+      font-family: CoverSerif;
+      src: url("file:///usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1200px; height: 630px; overflow: hidden; }
+    body {
+      background: #0c1018;
+      color: #ece7dc;
+      font-family: CoverSerif, "Liberation Serif", serif;
+      position: relative;
+    }
+    .sky {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 52% 58% at 50% 42%, rgba(236, 231, 220, 0.10), transparent 62%),
+        radial-gradient(ellipse 28% 24% at 50% 36%, rgba(200, 196, 184, 0.08), transparent 70%),
+        linear-gradient(180deg, #0c1018 0%, #151b26 72%, #0c1018 100%);
+    }
+    .noise {
+      position: absolute; inset: 0; opacity: 0.07; pointer-events: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+    .vignette {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 78% 82% at 50% 48%, transparent 42%, rgba(12, 16, 24, 0.72) 100%);
+    }
+    .pines {
+      position: absolute; left: 0; right: 0; bottom: 0; height: 150px;
+    }
+    .lockup {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+    }
+    .crest {
+      width: 196px;
+      height: 226px;
+      filter: drop-shadow(0 0 28px rgba(236, 231, 220, 0.18));
+    }
+    h1 {
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      line-height: 1;
+      color: #ece7dc;
+      padding-left: 0.28em;
+      text-shadow: 0 2px 24px rgba(12, 16, 24, 0.85);
+    }
+    .rule {
+      width: 72px;
+      height: 2px;
+      background: #9a9488;
+      opacity: 0.85;
+      margin-top: -6px;
+    }
+    .mote {
+      position: absolute;
+      border-radius: 50%;
+      background: #ece7dc;
+      opacity: 0.55;
+      box-shadow: 0 0 10px rgba(236, 231, 220, 0.35);
+    }
+  </style>
+</head>
+<body>
+  <div class="sky"></div>
+  <svg class="pines" viewBox="0 0 1200 150" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#0c1018" d="M0 150 L0 78 L38 150 L70 62 L108 150 L150 86 L188 150 L230 54 L278 150 L320 92 L360 150 L410 48 L458 150 L500 80 L548 150 L600 40 L650 150 L698 88 L740 150 L790 58 L838 150 L880 96 L920 150 L970 52 L1018 150 L1060 84 L1108 150 L1148 70 L1200 150 Z"/>
+    <path fill="#151b26" d="M0 150 L18 104 L48 150 L92 88 L128 150 L176 110 L214 150 L262 76 L306 150 L354 112 L402 150 L456 70 L508 150 L560 98 L608 150 L662 64 L716 150 L768 108 L816 150 L872 80 L924 150 L976 104 L1028 150 L1080 88 L1130 150 L1172 96 L1200 150 Z"/>
+  </svg>
+  <div class="mote" style="width:6px;height:6px;left:168px;top:412px;opacity:.4"></div>
+  <div class="mote" style="width:4px;height:4px;left:214px;top:348px"></div>
+  <div class="mote" style="width:5px;height:5px;left:980px;top:390px"></div>
+  <div class="mote" style="width:3px;height:3px;left:1042px;top:322px;opacity:.35"></div>
+  <div class="mote" style="width:4px;height:4px;left:140px;top:520px;opacity:.3"></div>
+  <div class="mote" style="width:7px;height:7px;left:1088px;top:470px;opacity:.28"></div>
+  <div class="mote" style="width:3px;height:3px;left:720px;top:150px;opacity:.25"></div>
+  <div class="mote" style="width:3px;height:3px;left:460px;top:128px;opacity:.22"></div>
+  <div class="lockup">
+    <svg class="crest" viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="fur" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ece7dc"/>
+          <stop offset="100%" stop-color="#c8c4b8"/>
+        </linearGradient>
+      </defs>
+      <circle cx="100" cy="118" r="92" fill="none" stroke="#9a9488" stroke-width="1.4" opacity="0.45"/>
+      <path fill="url(#fur)" d="M24 110 L50 8 L98 100 Z"/>
+      <path fill="url(#fur)" d="M176 110 L150 8 L102 100 Z"/>
+      <path fill="#9a9488" d="M44 98 L56 30 L90 94 Z"/>
+      <path fill="#9a9488" d="M156 98 L144 30 L110 94 Z"/>
+      <path fill="url(#fur)" d="M38 106 C72 86 128 86 162 106 C180 132 174 162 100 222 C26 162 20 132 38 106 Z"/>
+      <path fill="#9a9488" opacity="0.38" d="M44 132 C58 172 74 192 100 212 C74 172 52 150 44 132 Z"/>
+      <path fill="#9a9488" opacity="0.38" d="M156 132 C142 172 126 192 100 212 C126 172 148 150 156 132 Z"/>
+      <path fill="#ece7dc" d="M76 168 C100 156 124 168 100 204 C76 168 76 168 76 168 Z"/>
+      <path fill="#0c1018" d="M100 174 L91 188 Q100 196 109 188 Z"/>
+      <ellipse cx="76" cy="140" rx="7.2" ry="9.2" fill="#0c1018"/>
+      <ellipse cx="124" cy="140" rx="7.2" ry="9.2" fill="#0c1018"/>
+      <circle cx="78.2" cy="137" r="2.1" fill="#ece7dc"/>
+      <circle cx="126.2" cy="137" r="2.1" fill="#ece7dc"/>
+    </svg>
+    <h1>EMBERFOX</h1>
+    <div class="rule"></div>
+  </div>
+  <div class="vignette"></div>
+  <div class="noise"></div>
+</body>
+</html>

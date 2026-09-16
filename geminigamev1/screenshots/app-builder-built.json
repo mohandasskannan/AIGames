@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Emberfox",
+      "hasCanvas": true,
+      "bodyTextLen": 212,
+      "bodyTextHash": "ce29cb908321fb6fa1aad04448677eb253f57750bfb7a903748dff45e4baa2f1",
+      "bodyTextPrefix": "TWILIGHT HOLLOW Emberfox Carry the lantern through the vale. Col",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Emberfox",
+      "hasCanvas": true,
+      "bodyTextLen": 204,
+      "bodyTextHash": "4a6999d4f321e622509797ab43bd04fcbecc2704175489e7d372b36f2ce5ec0b",
+      "bodyTextPrefix": "TWILIGHT HOLLOW Emberfox Carry the lantern through the vale. Col",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

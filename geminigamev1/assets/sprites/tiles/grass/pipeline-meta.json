@@ -1,0 +1,151 @@
+{
+  "target": "asset",
+  "mode": "sheet",
+  "prompt": "",
+  "role": "",
+  "input": "/workspace/assets/sprites/tiles/raw-grass-platform.png",
+  "threshold": 100,
+  "edge_threshold": 150,
+  "duration": 200,
+  "rows": 1,
+  "cols": 3,
+  "cell_size": 128,
+  "fit_scale": 0.85,
+  "trim_border": 4,
+  "edge_clean_depth": 3,
+  "align": "bottom",
+  "shared_scale": false,
+  "component_mode": "largest",
+  "component_padding": 0,
+  "min_component_area": 1,
+  "edge_touch_margin": 0,
+  "frame_labels": [
+    "grass-1",
+    "grass-2",
+    "grass-3"
+  ],
+  "frames": [
+    {
+      "grid": [
+        0,
+        0
+      ],
+      "source_box": [
+        0,
+        0,
+        709,
+        912
+      ],
+      "component_mode": "largest",
+      "component_count": 2,
+      "selected_component_area": 120132,
+      "selected_component_bbox": [
+        76,
+        309,
+        580,
+        594
+      ],
+      "crop_bbox": [
+        76,
+        309,
+        580,
+        594
+      ],
+      "edge_touch": true,
+      "output_size": [
+        108,
+        61
+      ],
+      "paste_position": [
+        10,
+        58
+      ]
+    },
+    {
+      "grid": [
+        0,
+        1
+      ],
+      "source_box": [
+        709,
+        0,
+        1418,
+        912
+      ],
+      "component_mode": "largest",
+      "component_count": 1,
+      "selected_component_area": 178286,
+      "selected_component_bbox": [
+        0,
+        322,
+        701,
+        592
+      ],
+      "crop_bbox": [
+        0,
+        322,
+        701,
+        592
+      ],
+      "edge_touch": true,
+      "output_size": [
+        108,
+        41
+      ],
+      "paste_position": [
+        10,
+        78
+      ]
+    },
+    {
+      "grid": [
+        0,
+        2
+      ],
+      "source_box": [
+        1418,
+        0,
+        2127,
+        912
+      ],
+      "component_mode": "largest",
+      "component_count": 2,
+      "selected_component_area": 120147,
+      "selected_component_bbox": [
+        122,
+        309,
+        626,
+        593
+      ],
+      "crop_bbox": [
+        122,
+        309,
+        626,
+        593
+      ],
+      "edge_touch": true,
+      "output_size": [
+        108,
+        61
+      ],
+      "paste_position": [
+        10,
+        58
+      ]
+    }
+  ],
+  "edge_touch_frames": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ]
+  ]
+}
